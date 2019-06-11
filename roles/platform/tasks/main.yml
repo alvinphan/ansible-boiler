@@ -1,0 +1,30 @@
+
+- name: Download get-pip.py
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+  tags: install_pip
+
+- name: Install pip
+  command: "python get-pip.py"
+  args:
+    chdir: /tmp
+  become: yes
+  tags: install_pip
+
+- name: Install python virtualenv on pip
+  pip:
+    name: virtualenv
+  become: yes
+  tags: install_pip
+
+- name: Add git apt repository
+  apt_repository:
+    repo: ppa:git-core/ppa
+  become: yes
+
+- name: Install git
+  apt:
+    name: git
+    update_cache: yes
+  become: yes

@@ -1,0 +1,3 @@
+- hosts: pi-test
+  roles:
+    - platform

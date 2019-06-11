@@ -1,0 +1,11 @@
+- hosts: pi-test
+  tasks:
+  - name: ping pong it
+    ping:
+
+  - name: dig
+    command: "dig +short myip.opendns.com @resolver1.opendns.com"
+    register: dig_ip
+
+  - debug:
+      var: dig_ip.stdout
